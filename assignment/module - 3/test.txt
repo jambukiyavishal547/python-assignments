@@ -1,0 +1,1 @@
+File handling in Python is really simple and easy to implement. In order to pull a random word or string from a text file, we will first open the file in read mode and then use the methods in Python random module to pick a random word. 
