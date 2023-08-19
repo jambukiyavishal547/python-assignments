@@ -1,0 +1,46 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+</head>
+<body>
+<center>
+<h1>Verify OTP Page</h1>
+{% if msg %}
+<b  style="color:  red;">{{msg}}</b>
+{% endif %}
+<form  name="contect" method="POST" action="{% url 'Verify-otp' %}">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>
+				<input type="hidden" name="email" value="{{email}}">
+			</td>
+			<td>
+				<input type="hidden" name="otp" value="{{otp}}">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Enter OTP:-</label>
+				<td><input type="text" name="uotp" placeholder="Enter OTP"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<td>
+					<input type="submit" name="action" value="Verify OTP" class="btn btn-primary">
+				</td>
+			</td>
+		</tr>
+	</table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %} 

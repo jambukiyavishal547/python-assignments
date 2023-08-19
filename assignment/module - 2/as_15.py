@@ -1,4 +1,4 @@
-
+# Count repiat the sub string 
 main_str =input("Enter string: ")
 sub_str =input("Enter sub string: ")
 

@@ -1,0 +1,61 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>contect Page</title>
+</head>
+<body>
+<center>
+<h1>My Contect Page</h1>
+{% if msg %}
+<b  style="color:  red;">{{msg}}</b>
+{% endif %}
+<form  name="contect" method="POST" action="{% url 'contect' %}">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>
+				<label>Name:-</label>
+				<td><input type="text" name="name" placeholder="Enter Name"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Email:-</label>
+				<td><input type="email" name="email" placeholder="Enter Email"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Mobile:-</label>
+				<td><input type="text" name="mobile" placeholder="Enter Mobile"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Remark:-</label>
+				<td><textarea rows="5" cols="22" name="remark" placeholder="Enter Remark"></textarea></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<td colspan="2" align="center">
+					<input type="submit" name="action" value="SUBMIT" class="btn btn-primary">
+				</td>
+			</td>
+		</tr>
+	</table>
+</form>
+</center>
+<h1>Resend Contect</h1><hr>
+{% for i in contects %}
+	Name : {{i.name}}<br>
+	Remarks :{{i.remark}}<br><hr>
+{% endfor %}
+</body>
+</html>
+{% endblock %} 

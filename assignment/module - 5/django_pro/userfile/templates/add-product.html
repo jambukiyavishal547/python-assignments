@@ -1,0 +1,45 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+</head>
+<body>
+<center>
+<h1>Admin Add Product</h1>
+{% if msg %}
+<b  style="color:  red;">{{msg}}</b>
+{% endif %}
+<form  name="contect" method="POST" action="{% url 'add-product' %}">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>
+				<label>Product Brand:-</label>
+				<td><input type="text" name="pbrand" placeholder="Enter Brand Name"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Product Name:-</label>
+				<td><input type="text" name="pname" placeholder="Enter Name"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<td>
+					<input type="submit" name="action" value="Add" class="btn btn-primary">
+                    <a href="{% url 'add-sub-details' %}">Add Sub Details</a>
+                </td>
+			</td>
+		</tr>
+	</table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %} 

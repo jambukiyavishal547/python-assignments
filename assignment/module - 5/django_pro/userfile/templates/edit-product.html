@@ -1,0 +1,67 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+</head>
+<body>
+<center>
+<h1>Admin Edit Product Sub Details</h1>
+{% if msg %}
+<b  style="color:  red;">{{msg}}</b>
+{% endif %}
+<form  name="contect" method="POST" action="{% url 'edit-product'  pk=products.pk%}">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>
+				<label>Product Name:-</label>
+				<td><input type="text" name="pname" value="{{products.pname}}"></td>
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<label>Product Price:-</label>
+				<td><input type="text" name="product_price" value="{{products.product_price}}"></td>
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<label>Product Model:-</label>
+				<td><input type="text" name="product_model" value="{{products.product_model}}"></td>
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<label>Product Ram:-</label>
+				<td><input type="text" name="product_ram" value="{{products.product_ram}}"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<img src="{{products.product_image.url}}" height="200px" width="200px">
+			</td>
+		</tr>
+        <tr>
+			<td>
+				<label>Product Image:-</label>
+				<td><input type="file" name="product_image" value="{{products.product_image}}"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<td>
+					<input type="submit" name="action" value="Edit" class="btn btn-primary">
+                </td>
+			</td>
+		</tr>
+	</table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %} 

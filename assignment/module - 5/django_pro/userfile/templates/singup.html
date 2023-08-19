@@ -1,0 +1,87 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+</head>
+<body>
+<center>
+<h1>My Sing Up Page</h1>
+{% if msg %}
+<b  style="color:  red;">{{msg}}</b>
+{% endif %}
+<form  name="contect" method="POST" action="{% url 'singup' %}" enctype="multipart/form-data">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>
+				<label>First Name:-</label>
+				<td><input type="text" name="fname" placeholder="Enter Name"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Last Name:-</label>
+				<td><input type="text" name="lname" placeholder="Enter Name"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Email:-</label>
+				<td><input type="email" name="email" placeholder="Enter Email"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Mobile:-</label>
+				<td><input type="text" name="mobile" placeholder="Enter Mobile"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Address:-</label>
+				<td><textarea rows="5" cols="22" name="address" placeholder="Enter Remark"></textarea></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Gender:-</label>
+				<td>
+					<input type="radio" name="gender" value="male">Male
+					<input type="radio" name="gender" value="female">Female
+				</td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Password:-</label>
+				<td><input type="password" name="password" placeholder="Enter Password"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Confirm Password:-</label>
+				<td><input type="password" name="c_password" placeholder="Re-enter Password"></td>
+			</td>
+		</tr>
+		<tr>
+			<td>Profile Picture</td>
+			<td><input type="file" name="profile_pic"></td>
+		</tr>
+		<tr>
+			<td>
+				<td colspan="2" align="center">
+					<input type="submit" name="action" value="Sing Up" class="btn btn-primary">
+				</td>
+			</td>
+		</tr>
+	</table>
+</form>
+</center>
+</body>
+</html>
+{% endblock %} 
