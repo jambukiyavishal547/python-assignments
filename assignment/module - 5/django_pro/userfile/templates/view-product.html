@@ -9,29 +9,55 @@
 	<title>contect Page</title>
 </head>
 <body>
-<center>
 <h1>My Product Page</h1>
 {% if msg %}
 <b  style="color:  red;">{{msg}}</b>
 {% endif %}
 <form  name="contect" method="POST" action="{% url 'view-product' %}">
 	{% csrf_token %}
-</form>
-</center>
 <h1>Resend Product</h1><hr>
 <div class="container-fluid">
 	<div class="container">
-		<div class="row">
+		<div class="row" style="font-size: 25px;">
 			{% for i in products %}
-			<div>
-				<h3>Name: {{i.pname}} ,Price: {{i.product_price}} ,Image: {{i.product_image}} ,Model: {{i.product_model}} ,Ram:  {{i.product_ram}}
-				<button class="btn btn-edit" style="margin-left: 250px;"><a href="{% url 'edit-product' pk=i.pk %}">Edit</a></button>
-				<button class="btn btn-danger" style="margin-left: 20px ;"><a href="">Remove</a></button></h3><hr>
-			</div>
+			<th>
+				<tr>
+					<td>
+						Name: {{i.pname}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Price: {{i.product_price}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Image: {{i.product_image}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Model: {{i.product_model}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Ram:  {{i.product_ram}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<button class="btn btn-edit" style="margin-left: 20px;" ><a href="{% url 'edit-product' pk=i.pk %}">Edit</a></button>
+						<button class="btn btn-danger" style="margin-left: 20px ;"><a href="{% url 'delete-product' pk=i.pk %}">Remove</a></button></h3><hr>
+					</td>
+				</tr>
+			</th>
 			{% endfor %}
 		</div>
 	</div>
 </div>
+</form>
 </body>
 </html>
 {% endblock %} 

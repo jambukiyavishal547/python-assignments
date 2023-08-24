@@ -3,6 +3,7 @@ from.import views
 
 urlpatterns = [
     path('',views.index,name='index'),
+    path('manager-side/',views.manager_side,name='manager-side'),
     path('content/',views.contect,name='contect'),
     path('about/',views.about,name='about'),
     path('singup/',views.singup,name='singup'),
@@ -16,4 +17,5 @@ urlpatterns = [
     path('add-sub-details/',views.add_sub_details,name='add-sub-details'),
     path('view-product/',views.view_product,name='view-product'),
     path('edit-product/<int:pk>/',views.edit_product,name='edit-product'),
+    path('delete-product/<int:pk>/',views.delete_product,name='delete-product'),
 ]

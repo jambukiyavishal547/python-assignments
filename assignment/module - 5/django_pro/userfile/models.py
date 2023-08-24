@@ -14,11 +14,12 @@ class User(models.Model):
 	fname=models.CharField(max_length=100)
 	lname=models.CharField(max_length=100)
 	email=models.EmailField()
-	mobile=models.PositiveIntegerField()
+	mobile=models.PositiveSmallIntegerField()
 	address=models.TextField()
 	gender=models.CharField(max_length=100)
 	password=models.CharField(max_length=100)
 	profile_pic=models.ImageField(upload_to='image/',default="")
+	usertype=models.CharField(max_length=100,default="product_maneger")
 
 	def __str__(self):
 		return self.fname+" "+self.lname
@@ -33,10 +34,10 @@ class Product_mst(models.Model):
 
 class Product_sub_cat(models.Model):
 	pname=models.CharField(max_length=30)
-	product_price=models.PositiveIntegerField()
-	product_image=models.ImageField(upload_to='products/',default="")
+	product_price=models.PositiveSmallIntegerField()
+	product_image=models.ImageField(upload_to='image/',default="")
 	product_model=models.CharField(max_length=30)
-	product_ram=models.PositiveIntegerField()
+	product_ram=models.PositiveSmallIntegerField()
 
 	def __str__(self):
 		return self.pname

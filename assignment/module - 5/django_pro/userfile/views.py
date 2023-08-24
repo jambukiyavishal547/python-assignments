@@ -7,6 +7,9 @@ import random
 def index(request):
 	return render(request,'index.html')
 
+def manager_side(request):
+	return render(request,'manager-side.html')
+
 def add_product(request):
 	if request.method=="POST":
 		try:
@@ -50,12 +53,12 @@ def view_product(request):
 def edit_product(request,pk):
 	products=Product_sub_cat.objects.get(pk=pk)
 	if request.method=="POST":
-		products.pname=request.POST['pname'],
-		products.product_price=request.POST['product_price'],
-		products.product_model=request.POST['product_model'],
+		products.pname=request.POST['pname']
+		products.product_price=request.POST['product_price']
+		products.product_model=request.POST['product_model']
 		products.product_ram=request.POST['product_ram']
 		try:
-			products.product_image=request.POST['product_image']
+			products.product_image=request.FILES['product_image']
 		except:
 			pass
 		products.save()
@@ -63,6 +66,11 @@ def edit_product(request,pk):
 		return render(request,'edit-product.html',{'msg':msg,'products':products})
 	else:
 		return render(request,'edit-product.html',{'products':products})
+
+def delete_product(request,pk):
+	products=Product_sub_cat.objects.get(pk=pk)
+	products.delete()
+	return redirect('view-product')
 
 
 def contect(request):
@@ -100,6 +108,7 @@ def singup(request):
 						gender=request.POST['gender'],
 						password=request.POST['password'],
 						profile_pic=request.FILES['profile_pic'],
+						usertype=request.POST['usertype'],
 					)
 				msg="User Sing Up Successfully"
 				return render(request,'singup.html',{'msg':msg})
@@ -111,20 +120,26 @@ def singup(request):
 
 def login(request):
 	if request.method=="POST":
+		users=User.objects.get(email=request.POST['email'])
 		try:
-			users=User.objects.get(email=request.POST['email'])
 			if users.password==request.POST['password']:
-				request.session['email']=users.email
-				request.session['fname']=users.fname
-				request.session['profile_pic']=users.profile_pic.url
-				return render (request,'index.html')
+				if users.usertype=="admin":
+					request.session['email']=users.email
+					request.session['fname']=users.fname
+					request.session['profile_pic']=users.profile_pic.url
+					return redirect ('index')
+				else:
+					request.session['email']=users.email
+					request.session['fname']=users.fname
+					request.session['profile_pic']=users.profile_pic.url
+					return render (request,'manager-side.html')
 			else:
 				msg="Incorrect password"
 				return render(request,'login.html',{'msg':msg} )
 		except Exception as e:
-				print(e)
-				msg="Email Not Registed"
-				return render(request,'login.html',{'msg':msg} )
+			print(e)
+			msg="Email Not Registed"
+			return render(request,'login.html',{'msg':msg} )
 	else:
 		return render(request,'login.html')
 
