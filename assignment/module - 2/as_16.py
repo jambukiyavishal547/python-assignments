@@ -9,6 +9,6 @@ for i in b:
         c[i]=1
     else:
         c[i]+=1
-print(list(c))
+print(c)
 
 

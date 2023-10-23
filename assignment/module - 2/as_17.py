@@ -7,5 +7,5 @@ b =(input("enter value = "))
 c = b[:2] + a[2:]
 d = a[:2] + b[2:]
 
-print(c,'',d)
+print(c,' ',d)
 
